@@ -25,6 +25,7 @@
 
 # this CMakeLists is to generate libBox2D.a
 cmake_minimum_required(VERSION 2.8)
+project(Box2D-cocos2d-x)
 
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
