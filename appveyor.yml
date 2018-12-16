@@ -1,39 +1,30 @@
-# version string format -- This will be overwritten later anyway
 version: "{build}"
 
 os:
-  - Visual Studio 2017
   - Visual Studio 2015
 
 init:
   - git config --global core.autocrlf input
-  # Set build version to git commit-hash
   - ps: Update-AppveyorBuild -Version "$($env:APPVEYOR_REPO_BRANCH) - $($env:APPVEYOR_REPO_COMMIT)"
 
 install:
-  - git submodule update --init --recursive
+  #- cmd: ECHO "INSTALL OPENCV:"
+  #- choco upgrade chocolatey
+  #- choco install opencv
 
-# Win32 and x64 are CMake-compatible solution platform names.
-# This allows us to pass %PLATFORM% to CMake -A.
 platform:
-  - Win32
   - x64
 
-# build Configurations, i.e. Debug, Release, etc.
-configuration:
-  - Debug
-  - Release
-
-#Cmake will autodetect the compiler, but we set the arch
-before_build:
+before_build: 
+  #- cmd: IF EXIST c:\tools\opencv* CD c:\tools\opencv*
+  #- cmd: SET OPENCV_DIR=%CD%\build
+  #- cmd: echo Running cmake...
+  - cmd: cd C:\projects\Box2D-cocos2d-x\Box2D      
   - cmake -H. -BBuild -A%PLATFORM%
+  #- cmd: cd C:\projects\Box2D-cocos2d-x\Box2D
 
-# build with MSBuild
-build:
-  project: Build\ModernCppCI.sln        # path to Visual Studio solution or project
-  parallel: true                        # enable MSBuild parallel builds
-  verbosity: normal                     # MSBuild verbosity level {quiet|minimal|normal|detailed}
-
+build:    
+  project: c:\projects\Box2D-cocos2d-x\Box2D\build\Box2D-cocos2d-x.sln
+                 
 test_script:
   - cd Build
-  - ctest -V -j 2 -C %CONFIGURATION%
