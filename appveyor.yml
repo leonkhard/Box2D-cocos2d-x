@@ -7,21 +7,12 @@ init:
   - git config --global core.autocrlf input
   - ps: Update-AppveyorBuild -Version "$($env:APPVEYOR_REPO_BRANCH) - $($env:APPVEYOR_REPO_COMMIT)"
 
-install:
-  #- cmd: ECHO "INSTALL OPENCV:"
-  #- choco upgrade chocolatey
-  #- choco install opencv
-
 platform:
   - x64
 
 before_build: 
-  #- cmd: IF EXIST c:\tools\opencv* CD c:\tools\opencv*
-  #- cmd: SET OPENCV_DIR=%CD%\build
-  #- cmd: echo Running cmake...
   - cmd: cd C:\projects\Box2D-cocos2d-x\Box2D      
   - cmake -H. -BBuild -A%PLATFORM%
-  #- cmd: cd C:\projects\Box2D-cocos2d-x\Box2D
 
 build:    
   project: c:\projects\Box2D-cocos2d-x\Box2D\build\Box2D-cocos2d-x.sln
