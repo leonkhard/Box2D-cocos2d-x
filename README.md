@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/gs65g5td4480p72x?svg=true)](https://ci.appveyor.com/project/leonkhard/box2d-cocos2d-x)
+
 ## About This Repository
 - This is NOT the official Box2D standalone project. Official website
   is [here](http://box2d.org/downloads/)
