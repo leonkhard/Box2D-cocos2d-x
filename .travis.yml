@@ -35,7 +35,7 @@ matrix:
     # OSX C++14 Clang Builds
 
     - os:osx
-      osx_image: xcode8.3
+      osx_mage: xcode8.3
       compiler: clang
       env: COMPILER='clang++'BUILD_TYPE='Debug'
 
